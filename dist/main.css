@@ -1,0 +1,93 @@
+@charset "UTF-8";
+#app {
+  position: relative;
+  width: 450px;
+  height: 800px;
+  background-color: #000;
+  /* flex-direction: row; */
+  /* justify-content: center; */
+  /* align-items: flex-end; */
+}
+
+#monitor {
+  width: 100%;
+  height: 150px;
+  color: #fff;
+  font-size: 120px;
+  text-align: right;
+  /* 自己一行 */
+  flex-shrink: 0;
+}
+
+.numberButtonContainer {
+  /* flex */
+  display: flex;
+  width: 320px;
+  height: 430px;
+  /* 換行 */
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  /* 等分排列 */
+  align-content: space-between;
+  position: absolute;
+  left: 10px;
+  top: 260px;
+}
+
+.operatorButtonContainer {
+  /* flex */
+  display: flex;
+  width: 100px;
+  height: 540px;
+  /* background-color: blue; */
+  flex-direction: column;
+  justify-content: space-between;
+  position: absolute;
+  right: 10px;
+  top: 150px;
+}
+
+.otherButtonContainer {
+  display: flex;
+  height: 100px;
+  width: 320px;
+  /* background-color: blue; */
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-between;
+  position: absolute;
+  left: 10px;
+  top: 150px;
+}
+
+.button {
+  width: 100px;
+  height: 100px;
+  /* 在50px的地方切圓 */
+  border-radius: 50px;
+  font-size: 60px;
+  border: 0px;
+}
+.button.gray {
+  background-color: #333333;
+  color: #fff;
+}
+.button.orange {
+  background-color: #FE9505;
+  color: #fff;
+}
+.button.button0 {
+  /* flex-grow: 2.5; */
+  width: 210px;
+}
+
+#monitor2 {
+  display: flex;
+  position: absolute;
+  top: 10px;
+  left: 500px;
+  border: 1px solid black;
+}
+
+/*# sourceMappingURL=main.css.map */

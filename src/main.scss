@@ -1,0 +1,98 @@
+#app {
+    position: relative;
+    width: 450px;
+    height: 800px;
+    background-color: #000;
+    /* flex-direction: row; */
+    /* justify-content: center; */
+    /* align-items: flex-end; */
+}
+
+$monitor-height: 150px;
+$button-diameter: 100px;
+$button-margin: 10px;
+
+#monitor {
+    width: 100%;
+    height: $monitor-height;
+    color: #fff;
+    font-size: 120px;
+    text-align: right;
+    /* 自己一行 */
+    flex-shrink: 0;
+}
+
+.numberButtonContainer {
+    /* flex */
+    display: flex;
+    width: $button-diameter * 3 + $button-margin * 2;
+    height: $button-diameter * 4 + $button-margin * 3;
+    /* 換行 */
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    /* 等分排列 */
+    align-content:space-between; 
+    position: absolute;
+    left: $button-margin;
+    top: $monitor-height + $button-diameter + $button-margin;
+}
+
+.operatorButtonContainer {
+    /* flex */
+    display: flex;
+    width: $button-diameter;
+    height: $button-diameter * 5 + $button-margin * 4;  
+    /* background-color: blue; */
+    flex-direction: column;
+    justify-content: space-between;
+    position: absolute;
+    right: $button-margin;
+    top: $monitor-height;
+}
+.otherButtonContainer {
+    display: flex;
+    height: $button-diameter;
+    width: $button-diameter * 3 + $button-margin * 2;
+    /* background-color: blue; */
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: space-between;
+    position: absolute;
+    left: $button-margin;
+    top: $monitor-height;
+}
+
+.button {
+    width: $button-diameter;
+    height: $button-diameter;
+    /* 在50px的地方切圓 */
+    border-radius: $button-diameter / 2;
+    font-size: 60px;
+    border: 0px;
+    
+    &.gray {
+        background-color: #333333;
+        color: #fff;
+    }
+    &.orange {
+        background-color: #FE9505; 
+        color: #fff; 
+    }
+    &.button0 {
+        /* flex-grow: 2.5; */
+        width: $button-diameter * 2 + $button-margin;
+    }    
+}
+
+
+#monitor2 {
+    display: flex;
+    position: absolute;
+    top: 10px;
+    left: 500px;
+    border: 1px solid black;
+}
+
+
+
