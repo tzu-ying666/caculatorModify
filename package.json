@@ -1,10 +1,10 @@
 {
   "name": "test",
   "version": "1.0.0",
-  "description": "",
+  "description": "開發  npm run dev\r 開發  nodemon server",
   "main": "main.js",
   "scripts": {
-    "server":"nodemon server",
+    "server": "nodemon server",
     "dev": "sass --watch src/main.scss dist/main.css",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "webpack",
@@ -19,5 +19,13 @@
   },
   "dependencies": {
     "axios": "^0.21.1"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tzu-ying666/caculatorModify.git"
+  },
+  "bugs": {
+    "url": "https://github.com/tzu-ying666/caculatorModify/issues"
+  },
+  "homepage": "https://github.com/tzu-ying666/caculatorModify#readme"
 }
