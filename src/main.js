@@ -2,10 +2,8 @@ import Monitor from './components/monitor';
 import Monitor2 from './components/monitor2';
 import Button from './components/button';
 var app = document.querySelector('#app'); //是一個ID 只能被使用一次 JS API HTML
-var operator = '';
 var info = '0'; //顯示
-var onSecondInput = false;
-var firstNumber = 0;
+
 
 function createLayout () { //創一個class在monitior下
     const numberButtonContainer = document.createElement('div');
@@ -31,11 +29,10 @@ function createLayout () { //創一個class在monitior下
 
 var button = Button();
 var monitor = Monitor();
-var monitor2 = Monitor2();
 monitor.install(info);
 var containers = createLayout();
-button.install();
-monitor2.install(info);
+button.install(containers);
+Monitor2.install(info);
 
 
 // Rest API

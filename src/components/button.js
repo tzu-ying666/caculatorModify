@@ -1,3 +1,10 @@
+import Monitor2 from './Monitor2';
+
+
+var onSecondInput = false;
+var firstNumber = 0;
+var operator = '';
+
 function Button () {
     const operators = ['÷', 'x', '-', '+'];
     const numbers = ['7', '8', '9', '4', '5', '6', '1', '2', '3', '0','.']; 
@@ -80,7 +87,7 @@ function Button () {
 
     function createButton (text, containers) {
         const button = document.createElement('button');
-        var parent = app;
+        var parent = undefined;
         // button.id = 'button_' + text; //創造HTML的id 
         button.classList.add('button');
         button.classList.add('button' + text);
@@ -98,7 +105,7 @@ function Button () {
             parent = containers.otherButtonContainer;
         }
         const inputText = () => {
-            monitor2.input('按下按鈕:' + text);
+            Monitor2.input('按下按鈕:' + text);
 
             if (text === 'AC') {
                 input('0');
@@ -170,20 +177,20 @@ function Button () {
             };
             const dataString = JSON.stringify(data); //數據轉字串
             // console.table(data);
-            monitor2.input(dataString);
+            Monitor2.input(dataString);
 
             // if (text === 'Clean log') {
-            //     monitor2.clean();
+            //     Monitor2.clean();
             // }
         };
-
         
         button.innerHTML = text;
         button.onclick = inputText;
         parent.appendChild(button); //parent取代app
+
     }
     // create buttons
-    function install () {
+    function install (containers) {
         var arr = [
             ...numbers,
             ...operators,
@@ -191,13 +198,18 @@ function Button () {
             //'Clean log' 
             //'<-'
         ];
-        // console.log(arr);
+        console.log(arr);
             //為createButton
-        arr.forEach(createButton);
+        arr.forEach((text) => {
+            createButton(text, containers);
+        });
         // return '123'
     }
     return {
         install: install,
+        createButton,
+        input,
+        showResult,
     };
 }
 
