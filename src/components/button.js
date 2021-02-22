@@ -1,9 +1,10 @@
 import Monitor2 from './Monitor2';
-
+import Monitor from './Monitor';
 
 var onSecondInput = false;
 var firstNumber = 0;
 var operator = '';
+var remember =  '';
 
 function Button () {
     const operators = ['÷', 'x', '-', '+'];
@@ -59,7 +60,7 @@ function Button () {
             result = firstNumber / secondNumber;
         }
         input(result);
-        monitor.render(result);
+        Monitor.render(result);
         // monitor.input(result); //monitor.input(result.toString());
         console.log(firstNumber, operator, secondNumber, '=', result);
         // 準備下一次運算環境
@@ -67,27 +68,28 @@ function Button () {
     }
 
     function input (text, toReplace = true) {
-        console.log(text);
+        console.log('input content text: ', text);
         if (toReplace) {  //是否要被覆蓋
-            info = text;
+            remember = text;
         }
         else {
             if (text === '.') {
-                if (info.includes('.') === false) {
-                    info = info + text;                
+                if (remember.includes('.') === false) {
+                    remember = remember + text;                
                 } 
-            } else if (info === '0') {
-                info = text;
+            } else if (remember === '0') {
+                remember = text;
             } else { 
-                info = info + text;
+                remember = remember + text;
             }
         }
-        console.log(info);
+        console.log('input re:', remember);
     }
 
     function createButton (text, containers) {
         const button = document.createElement('button');
         var parent = undefined;
+
         // button.id = 'button_' + text; //創造HTML的id 
         button.classList.add('button');
         button.classList.add('button' + text);
@@ -106,72 +108,76 @@ function Button () {
         }
         const inputText = () => {
             Monitor2.input('按下按鈕:' + text);
+            console.log('按下按鈕' + text);
 
             if (text === 'AC') {
                 input('0');
                 operator = '';
                 onSecondInput = false;
                 firstNumber = 0;
-                monitor.render(info);
+                Monitor.render(remember);
                 // monitor.clean();
             } else if (text === 'C') {
                 input('0');
-                monitor.render(info);
+                Monitor.render(remember);
                 // monitor.clean();
             } else if (text ==='+/-') {
-                var infoNumber = Number(info);
+                var infoNumber = Number(remember);
                 var isPositive = infoNumber > 0;
                 var newInfo = '';
 
                 if (isPositive) {
-                    newInfo = '-' + info;
+                    newInfo = '-' + remember;
                 } else {
-                    console.log(info);
-                    newInfo = info.slice(1); //第1個留下 開頭是0
+                    console.log(remember);
+                    newInfo = remember.slice(1); //第1個留下 開頭是0
                 }
 
                 input(newInfo);
-                monitor.render(info);
+                monitor.render(remember);
             } else if (text === '<-') {
                 var newInfo = '';
-                if (info.length === 1) {
+                if (remember.length === 1) {
                     input('0');
                 } else {
-                    newInfo = info.slice(0, info.length - 1); //backspace 從第0個開始算到字串長度-1 都留下
+                    newInfo = remember.slice(0, remember.length - 1); //backspace 從第0個開始算到字串長度-1 都留下
                 }
                 input(newInfo);
-                monitor.render(info);
+                Monitor.render(remember);
             } else if (isOperator(text)) { //operator判斷
                 if (operator !== '' && onSecondInput === true) {
-                    // const secondNumberString = info;
-                    console.log(info, '123');
-                    showResult(info);
+                    // const secondNumberString = remember;
+                    console.log(remember, '123');
+                    showResult(remember);
                 }
                 operator = text; //text取代operator
             } else if (isNumber(text)) {  //num判斷
                 if (operator !== '') {  // second input
                     if (onSecondInput === false) {
-                        firstNumber = Number(info);  //轉換成數字
-                        // info = monitor.input(text, info);
-                        info = monitor.input('', text); //????
+                        firstNumber = Number(remember);  //轉換成數字
+                        // remember = monitor.input(text, remember);
+                        remember = Monitor.input('', text); //????
                         input('0');
                         onSecondInput = true; 
                          //firstnum save
                     } 
-                    console.log('info:', info, ', second text:', text);
 
                 }
-                console.log('info2:', info, ', text2:', text);
+
+                // let remember = '10';
+                // remember = input(text, false);
                 input(text, false);
-                monitor.render(info);
+                console.log('remenber first num: ', remember);
+
+                Monitor.render(remember);
             } else if (text === '=' && operator !== '' && onSecondInput === true) {  //&& all ture
-               showResult(info);
-            //    monitor.render(info);
+               showResult(remember);
+            //    monitor.render(remember);
             }
 
             const data = {
                 operator,
-                info,
+                remember,
                 onSecondInput,
                 firstNumber,
             };

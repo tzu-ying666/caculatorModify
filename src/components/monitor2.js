@@ -9,8 +9,10 @@ function install (info) {
 }
 
 function render () {
-    monitor.innerHTML = info;
-    // console.log(info);
+    let appMonitor = document.getElementById('monitor2'); //尋找monitor元件
+    // console.log('target div: ', monitor, appMonitor);
+
+    appMonitor.innerHTML = info;  //會覆蓋原本的內容
 }
 
 function input (text) {

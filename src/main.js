@@ -28,8 +28,8 @@ function createLayout () { //創一個class在monitior下
 
 
 var button = Button();
-var monitor = Monitor();
-monitor.install(info);
+// var monitor = Monitor();
+Monitor.install(info);
 var containers = createLayout();
 button.install(containers);
 Monitor2.install(info);
